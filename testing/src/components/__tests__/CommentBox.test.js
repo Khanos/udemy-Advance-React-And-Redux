@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import CommentBox from 'components/CommentBox';
+import commentsReducer from 'reducers/comments';
 import Root from 'Root';
 
 let wrapped;
@@ -43,4 +44,9 @@ describe('has a text area and a button', () => {
 		wrapped.update();
 		expect(wrapped.find('textarea').prop('value')).toEqual('');
 	});
+});
+
+it('Handles action with unknown type', () => {
+	const newState = commentsReducer([],{type: 'asdasdasd'});
+	expect(newState).toEqual([]);
 });
